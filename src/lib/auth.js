@@ -2,16 +2,9 @@ import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb";
 
-// Prevent multiple MongoClient connections in development
-const globalForMongo = global;
-
-const client =
-  globalForMongo.mongoClient ||
-  new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:27017/tiles-gallery");
-
-if (process.env.NODE_ENV !== "production") {
-  globalForMongo.mongoClient = client;
-}
+const client = new MongoClient(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/tiles-gallery", {
+  serverSelectionTimeoutMS: 5000,
+});
 
 const db = client.db(); // Uses the database specified in the URI
 
