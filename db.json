@@ -10,6 +10,7 @@
       "currency": "USD",
       "dimensions": "60x60 cm",
       "material": "Ceramic",
+      "creator": "Aesthetic Ceramics Studio",
       "inStock": true,
       "featured": true,
       "tags": ["blue", "glossy", "bathroom"]
@@ -24,6 +25,7 @@
       "currency": "USD",
       "dimensions": "30x30 cm",
       "material": "Porcelain",
+      "creator": "Forma Pattern Works",
       "inStock": true,
       "featured": true,
       "tags": ["geometric", "black-and-white", "modern"]
@@ -38,6 +40,7 @@
       "currency": "USD",
       "dimensions": "40x40 cm",
       "material": "Clay",
+      "creator": "Terra Cotta House",
       "inStock": true,
       "featured": false,
       "tags": ["rustic", "earthy", "outdoor"]
@@ -52,6 +55,7 @@
       "currency": "USD",
       "dimensions": "15x15 cm",
       "material": "Marble",
+      "creator": "Luxe Stone Atelier",
       "inStock": false,
       "featured": true,
       "tags": ["hexagon", "marble", "luxury"]
@@ -66,6 +70,7 @@
       "currency": "USD",
       "dimensions": "10x20 cm",
       "material": "Ceramic",
+      "creator": "Metro Surface Lab",
       "inStock": true,
       "featured": false,
       "tags": ["white", "subway", "kitchen"]
@@ -80,6 +85,7 @@
       "currency": "USD",
       "dimensions": "50x50 cm",
       "material": "Composite",
+      "creator": "Confetti Surface Studio",
       "inStock": true,
       "featured": true,
       "tags": ["terrazzo", "colorful", "floor"]
@@ -94,6 +100,7 @@
       "currency": "USD",
       "dimensions": "60x120 cm",
       "material": "Natural Stone",
+      "creator": "Nordic Stone Craft",
       "inStock": true,
       "featured": false,
       "tags": ["grey", "stone", "durable"]
@@ -108,6 +115,7 @@
       "currency": "USD",
       "dimensions": "15x20 cm",
       "material": "Ceramic",
+      "creator": "Emerald Wave Designs",
       "inStock": true,
       "featured": false,
       "tags": ["green", "fishscale", "feature"]
