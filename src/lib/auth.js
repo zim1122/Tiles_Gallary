@@ -1,40 +1,36 @@
 import { betterAuth } from "better-auth";
-import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
-const mongoUri =
-  process.env.MONGODB_URI || process.env.MONGO_DB_URI || "mongodb://127.0.0.1:27017/tiles-gallery";
+const mongoUri = process.env.MONGO_DB_URI || process.env.MONGODB_URI;
 
-const client = new MongoClient(mongoUri, {
-  serverSelectionTimeoutMS: 5000,
-});
+if (!mongoUri) {
+  throw new Error("MONGO_DB_URI is not defined in environment variables");
+}
 
-const db = client.db(); // Uses the database specified in the URI
+let client;
+let clientPromise;
 
-const baseURL =
-  process.env.BETTER_AUTH_URL ||
-  process.env.NEXT_PUBLIC_APP_URL ||
-  "http://localhost:3000";
+if (process.env.NODE_ENV === "development") {
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(mongoUri);
+    global._mongoClientPromise = client.connect();
+  }
+  clientPromise = global._mongoClientPromise;
+} else {
+  client = new MongoClient(mongoUri);
+  clientPromise = client.connect();
+}
 
-const googleClientId =
-  process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
-
-const socialProviders =
-  googleClientId && googleClientSecret
-    ? {
-        google: {
-          clientId: googleClientId,
-          clientSecret: googleClientSecret,
-        },
-      }
-    : {};
+const connectedClient = await clientPromise;
+const db = connectedClient.db();
 
 export const auth = betterAuth({
-  baseURL,
-  database: mongodbAdapter(db),
-  emailAndPassword: {
-    enabled: true,
+  baseURL: process.env.BETTER_AUTH_URL,
+  emailAndPassword: { 
+    enabled: true, 
   },
-  socialProviders,
+  database: mongodbAdapter(db, {
+    client: connectedClient
+  }),
 });

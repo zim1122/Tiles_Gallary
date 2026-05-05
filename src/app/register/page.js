@@ -9,6 +9,9 @@ import { FcGoogle } from "react-icons/fc";
 
 function getFriendlyAuthError(error) {
   const message = error?.message || error?.statusText || "Registration failed. Please try again.";
+  if (message.includes("Failed to fetch") || message.includes("NetworkError")) {
+    return "Cannot reach auth server. In production, set BETTER_AUTH_URL to your deployed domain and redeploy.";
+  }
   if (
     message.includes("Internal Server Error") ||
     message.includes("ECONNREFUSED") ||

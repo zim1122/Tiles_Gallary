@@ -15,6 +15,9 @@ function safeInternalPath(path) {
 
 function getFriendlyAuthError(error) {
   const message = error?.message || error?.statusText || "Failed to login. Please check your credentials.";
+  if (message.includes("Failed to fetch") || message.includes("NetworkError")) {
+    return "Cannot reach auth server. In production, set BETTER_AUTH_URL to your deployed domain and redeploy.";
+  }
   if (
     message.includes("Internal Server Error") ||
     message.includes("ECONNREFUSED") ||
