@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { getAuth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Link from "next/link";
 import { User, Mail, Calendar, Edit3 } from "lucide-react";
 
 export default async function MyProfilePage() {
-  const session = await auth.api.getSession({
+  const session = await getAuth().api.getSession({
     headers: await headers()
   });
 

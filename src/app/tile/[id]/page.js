@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { getAuth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
@@ -10,7 +10,7 @@ export default async function TileDetailsPage({ params }) {
   const { id } = await params;
 
   // Protect route
-  const session = await auth.api.getSession({
+  const session = await getAuth().api.getSession({
     headers: await headers()
   });
 
