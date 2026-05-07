@@ -13,7 +13,7 @@ function resolveAuthBaseUrl() {
         return window.location.origin;
     }
 
-    return "http://localhost:3000";
+    return process.env.BETTER_AUTH_URL;
 }
 
 export const authClient = createAuthClient({
