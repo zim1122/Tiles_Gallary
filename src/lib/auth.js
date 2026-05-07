@@ -10,23 +10,47 @@ if (!mongoUri) {
 
 let client;
 let clientPromise;
+const useInsecureTls = process.env.MONGO_TLS_INSECURE === "true";
+const isLocalMongo =
+  mongoUri.includes("localhost") || mongoUri.includes("127.0.0.1");
+
+const mongoClientOptions = {
+  serverSelectionTimeoutMS: 10000,
+  ...(isLocalMongo ? { directConnection: true } : {}),
+  ...(useInsecureTls
+    ? { tlsAllowInvalidCertificates: true, tlsAllowInvalidHostnames: true }
+    : {}),
+};
 
 if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(mongoUri);
-    global._mongoClientPromise = client.connect();
+  if (!globalThis._mongoClientPromise) {
+    client = new MongoClient(mongoUri, mongoClientOptions);
+    globalThis._mongoClientPromise = client.connect();
   }
-  clientPromise = global._mongoClientPromise;
+  clientPromise = globalThis._mongoClientPromise;
 } else {
-  client = new MongoClient(mongoUri);
+  client = new MongoClient(mongoUri, mongoClientOptions);
   clientPromise = client.connect();
 }
 
-const connectedClient = await clientPromise;
+let connectedClient;
+try {
+  connectedClient = await clientPromise;
+} catch (error) {
+  console.error("MongoDB connection failed:", error);
+  throw new Error(
+    "Failed to connect to MongoDB. If you use Atlas, whitelist your current IP and verify the connection string. If you use a self-signed/local TLS cert, set MONGO_TLS_INSECURE=true in .env.local for development."
+  );
+}
 const db = connectedClient.db();
+const baseURL =
+  process.env.BETTER_AUTH_URL ||
+  process.env.NEXT_PUBLIC_BETTER_AUTH_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  "http://localhost:3000";
 
 export const auth = betterAuth({
-  baseURL: process.env.BETTER_AUTH_URL,
+  baseURL: baseURL.replace(/\/$/, ""),
   emailAndPassword: { 
     enabled: true, 
   },
