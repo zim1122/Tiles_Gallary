@@ -41,12 +41,30 @@ export function getAuth() {
 
   const client = getMongoClient();
   const db = client.db();
+  const googleClientId =
+    process.env.GOOGLE_CLIENT_ID ||
+    process.env.GOOGLE_OAUTH_CLIENT_ID ||
+    process.env.AUTH_GOOGLE_ID;
+  const googleClientSecret =
+    process.env.GOOGLE_CLIENT_SECRET ||
+    process.env.GOOGLE_OAUTH_CLIENT_SECRET ||
+    process.env.AUTH_GOOGLE_SECRET;
 
   authInstance = betterAuth({
     baseURL: baseURL.replace(/\/$/, ""),
     emailAndPassword: {
       enabled: true,
     },
+    ...(googleClientId && googleClientSecret
+      ? {
+          socialProviders: {
+            google: {
+              clientId: googleClientId,
+              clientSecret: googleClientSecret,
+            },
+          },
+        }
+      : {}),
     database: mongodbAdapter(db, {
       client,
     }),
