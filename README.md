@@ -1,56 +1,333 @@
-# Tiles Gallery
+<div align="center">
 
-Tiles Gallery is a premium, fully responsive Next.js application designed to showcase a curated collection of wall and floor tiles. It features a modern aesthetic, robust authentication, and a dynamic searchable gallery.
+# 🧱 Tiles Gallery  
+### ✨ Discover Your Perfect Aesthetic ✨
 
-## Live URL
-- [https://your-tiles-gallery.vercel.app](https://your-tiles-gallery.vercel.app)
+A modern, fully responsive tile showcase platform built with **Next.js App Router**, **BetterAuth**, and **MongoDB**.  
+Explore premium tile collections, discover aesthetic designs, and experience a clean modern UI.
 
-## Project Purpose
-Developed as a high-end Tiles Gallery platform, this project demonstrates modern web development practices including server-side rendering, secure authentication with Better Auth, and a fluid, responsive UI using DaisyUI.
+<br/>
 
-## Key Features
-- **Home Page**: High-impact banner, marquee announcements, and featured tiles with SwiperJS integration.
-- **All Tiles Gallery**: Comprehensive browsing with real-time search functionality.
-- **Protected Tile Details**: Detailed specifications, high-res previews, and stock status (Private Route).
-- **Secure Authentication**: Email/Password and Google Social Login via Better Auth.
-- **User Profiles**: Personalized profile dashboard with account details (Private Route).
-- **Profile Updates**: Dedicated feature to update user name and image URL.
-- **Modern UI/UX**: Premium design with global loading states and custom error pages.
+![Next JS](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)
+![BetterAuth](https://img.shields.io/badge/Auth-BetterAuth-orange?style=for-the-badge)
 
-## Challenge Requirements
-1.  **My Profile & Update Information**: 
-    - Implement a `/my-profile` route displaying user data.
-    - Implement a `/my-profile/update` route with a form to update name and photo URL using `better-auth`'s `updateUser` API.
-2.  **External Libraries**:
-    - **SwiperJS**: Integrated on the home page for a smooth, touch-friendly tile showcase slider.
-    - **Lucide React**: For premium, consistent iconography throughout the site.
-    - **Framer Motion**: Subtle entry animations for a polished feel.
+</div>
 
-## NPM Packages Used
-- `next` & `react` (Framework)
-- `better-auth` (Authentication)
-- `mongodb` & `mongoose` (Database)
-- `daisyui` & `tailwindcss` (Styling)
-- `swiper` (Slider Gallery)
-- `lucide-react` & `react-icons` (Icons)
-- `framer-motion` (Animations)
+---
 
-## Environment Variables
-Create a `.env.local` file in the root directory:
-```env
-BETTER_AUTH_SECRET=your_secret
-BETTER_AUTH_URL=http://localhost:3000
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-MONGO_DB_URI=your_mongodb_uri
-GOOGLE_CLIENT_ID=your_google_id
-GOOGLE_CLIENT_SECRET=your_google_secret
+# 🌐 Live Website
+
+🔗 **Live Site:**  
+https://tiles-gallary-h6ig.vercel.app
+
+---
+
+# 📖 About The Project
+
+**Tiles Gallery** is a modern interior-inspired web application where users can browse elegant tile collections, search for aesthetic designs, explore tile details, and manage their profile securely.
+
+The project focuses on:
+
+- Modern UI/UX
+- Responsive Design
+- Secure Authentication
+- Dynamic Data Rendering
+- Clean Component Architecture
+
+---
+
+# ✨ Core Features
+
+## 🏠 Stunning Home Page
+✔ Eye-catching Hero Banner  
+✔ Animated Marquee Section  
+✔ Featured Tile Showcase  
+✔ Smooth CTA Navigation  
+✔ Responsive Layout  
+
+---
+
+## 🖼️ Dynamic Tile Gallery
+✔ Search tiles instantly by title  
+✔ Dynamic cards from JSON server  
+✔ Clean masonry/grid layout  
+✔ Responsive gallery system  
+
+---
+
+## 🔍 Tile Details Page
+✔ Large high-resolution preview  
+✔ Tile descriptions & categories  
+✔ Tags & style information  
+✔ Protected route access  
+
+---
+
+## 🔐 Authentication System
+✔ Login with Email & Password  
+✔ Register New Account  
+✔ Google Social Login  
+✔ BetterAuth Integration  
+✔ Secure Route Protection  
+✔ Error & Success Toasts  
+
+---
+
+## 👤 My Profile Dashboard
+✔ View user information  
+✔ Update profile image  
+✔ Update display name  
+✔ Dynamic user session handling  
+
+---
+
+## 🚀 Additional Features
+✔ Custom Loading Spinner  
+✔ 404 Not Found Page  
+✔ Environment Variables Security  
+✔ Mobile-First Responsive Design  
+✔ Smooth Animations  
+✔ Protected Private Routes  
+✔ JSON Server API Integration  
+
+---
+
+# 🧩 Tech Stack
+
+| Technology | Usage |
+|---|---|
+| Next.js 15 | Frontend Framework |
+| React | UI Development |
+| Tailwind CSS | Styling |
+| DaisyUI / HeroUI | UI Components |
+| BetterAuth | Authentication |
+| MongoDB | Database |
+| JSON Server | Mock Backend |
+| Axios | API Requests |
+| SwiperJS | Slider & Carousel |
+| Animate.css | Animations |
+| React Hot Toast | Notifications |
+
+---
+
+# 📂 Project Structure
+
+```bash
+src/
+│
+├── app/
+│   ├── login/
+│   ├── register/
+│   ├── all-tiles/
+│   ├── tile/[id]/
+│   ├── my-profile/
+│   └── not-found.jsx
+│
+├── components/
+│   ├── Navbar
+│   ├── Footer
+│   ├── Banner
+│   ├── TileCard
+│   └── Loader
+│
+├── providers/
+├── hooks/
+├── services/
+├── lib/
+└── utils/
 ```
 
-## Route Permissions Summary
-- **Public Routes**: `/`, `/all-tiles`, `/login`, `/register`
-- **Private Routes**: `/tile/[id]`, `/my-profile`, `/my-profile/update`
+---
 
-## How to Run
-1.  Install dependencies: `npm install`
-2.  Start dev server: `npm run dev`
-3.  Open [http://localhost:3000](http://localhost:3000)
+# 🔐 Environment Variables
+
+Create a `.env.local` file and add:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+
+BETTER_AUTH_SECRET=your_secret_key
+
+BETTER_AUTH_URL=http://localhost:3000
+
+GOOGLE_CLIENT_ID=your_google_client_id
+
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+---
+
+# 📦 Installation Guide
+
+## 📥 Clone Repository
+
+```bash
+git clone https://github.com/your-username/tiles-gallery.git
+```
+
+---
+
+## 📁 Move To Project Folder
+
+```bash
+cd tiles-gallery
+```
+
+---
+
+## 📦 Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## ▶ Run JSON Server
+
+```bash
+npx json-server --watch db.json --port 5000
+```
+
+---
+
+## 🚀 Start Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌍 Open Browser
+
+```bash
+http://localhost:3000
+```
+
+---
+
+# 🛣️ Route Permissions
+
+| Route | Type |
+|---|---|
+| `/` | 🌐 Public |
+| `/all-tiles` | 🌐 Public |
+| `/login` | 🌐 Public |
+| `/register` | 🌐 Public |
+| `/tile/[id]` | 🔒 Private |
+| `/my-profile` | 🔒 Private |
+
+---
+
+# 🧱 Sample Tile JSON
+
+```json
+{
+  "id": "tile_001",
+  "title": "Ceramic Blue Tile",
+  "description": "Premium ceramic tile with blue glaze finish",
+  "image": "/images/tiles/tile_001.jpg",
+  "category": "ceramic",
+  "price": 45.99,
+  "currency": "USD",
+  "dimensions": "60x60 cm",
+  "material": "Ceramic",
+  "inStock": true
+}
+```
+
+---
+
+# 📱 Responsive Design
+
+The application is fully optimized for:
+
+✅ Mobile Devices  
+✅ Tablets  
+✅ Laptops  
+✅ Desktop Screens  
+
+---
+
+# 🎯 Challenge Features Implemented
+
+## 👤 My Profile Feature
+- Dynamic user profile page
+- Update user name
+- Update profile image
+
+## 🔄 Update Information System
+- Separate update route
+- BetterAuth update-user integration
+
+## 🎨 Library Integration
+- SwiperJS
+- Animate.css
+
+---
+
+# 🚀 Deployment
+
+This project is deployed on:
+
+### ▲ Vercel
+https://your-live-site-url.vercel.app
+
+---
+
+# 📸 Project Preview
+
+## 🏠 Home Page
+_Add screenshot here_
+
+## 🖼️ All Tiles Page
+_Add screenshot here_
+
+## 👤 Profile Page
+_Add screenshot here_
+
+---
+
+# 📋 Requirements Checklist
+
+- [x] Next.js App Router
+- [x] BetterAuth Authentication
+- [x] MongoDB Integration
+- [x] Responsive Design
+- [x] Private Routes
+- [x] JSON Server
+- [x] Search Functionality
+- [x] Google Login
+- [x] User Profile Update
+- [x] Dynamic Tile Details
+- [x] Custom UI Design
+
+---
+
+# 👨‍💻 Author
+
+## Your Name
+
+🔗 GitHub:  
+https://github.com/your-username
+
+🔗 LinkedIn:  
+https://linkedin.com/in/your-profile
+
+---
+
+<div align="center">
+
+# ⭐ If you like this project, give it a star ⭐
+
+</div>
+
+---
+
+# 📜 License
+
+This project is created for educational and assignment purposes only.
